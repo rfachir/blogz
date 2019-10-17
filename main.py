@@ -4,7 +4,7 @@ from sqlalchemy import desc
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://build-a-blog:jbh09jbh@localhost:8889/build-a-blog'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://buildablog:buildablog@localhost:8889/buildablog'
 app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
 
@@ -18,7 +18,10 @@ class Post(db.Model):
         self.title = title
         self.post_body = post_body
 
-# 
+@app.route('/')
+def main():
+    return redirect('/blog')
+
 @app.route('/blog', methods=['GET'])
 def index():
 
@@ -41,7 +44,7 @@ def newpost():
         post_title = request.form['title']
         post_body = request.form['post_body']
         
-        if not post_title:
+        if (len(post_title)<1):                                                        # not post_title:
             errtitle = 'Please enter a blog post title '
             post_body = post_body
             return render_template('newpost.html', description="Add Blog Posts", errtitle=errtitle, body=post_body)
