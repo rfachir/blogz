@@ -4,14 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="../static/styles/styles.css">
+    <!-- <link rel="stylesheet" type="text/css" href="../static/styles/styles.css"> -->
     <title>{{description}}</title>
+    
 </head>
 <body>
     <nav>
+        <a href="/">Home</a>
         <a href="/newpost">Add Post</a>
         <a href="/blog">Posts</a>
+        <a href="/logout">Log Out</a>
     </nav>
+
+
+    {% with messages = get_flashed_messages() %}
+    <ul>
+        {% for message in messages %}
+        <li>{{message}}</li>
+        {% endfor %}
+    </ul>
+    {% endwith %}
+    
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
+        {% endfor %}
+    </ul>
+    {% endwith %}
+    
     {% block content %}
     {% endblock %}
 </body>

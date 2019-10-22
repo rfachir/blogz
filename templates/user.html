@@ -1,0 +1,28 @@
+{% extends "bootstrap/base.html" %}
+
+{% block content %}
+
+
+
+{% for user in users %}
+{% if titles.user_id==user.id %}
+<h1>{{user.username}}'s blog</h1>
+{% endif %}
+{% endfor %}
+
+    {% for post in posts %}
+
+        <div class="post">
+            <a href="./blog?post_id={{post.id}}">
+            <h2>{{post.title}}</h2>
+            </a>
+        <p>{{post.post_body}}</p>
+        <a href="./blog?user_id={{post.user_id}}">
+        </a>
+        </div>
+    {% endfor %}
+
+
+
+
+{% endblock %}
